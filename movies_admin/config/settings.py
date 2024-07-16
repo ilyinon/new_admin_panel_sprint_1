@@ -16,12 +16,12 @@ from dotenv import load_dotenv
 from split_settings.tools import include
 
 
-load_dotenv() 
+load_dotenv()
 
 
 include(
     'components/database.py',
-) 
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,7 +35,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-#DEBUG = os.environ.get('DEBUG', False) 
 DEBUG = os.environ.get('DEBUG', False) == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
@@ -96,8 +95,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -139,4 +136,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOCALE_PATHS = ['movies/locale'] 
+LOCALE_PATHS = ['movies/locale']
