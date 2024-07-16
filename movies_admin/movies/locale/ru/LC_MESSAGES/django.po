@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-15 20:38+0000\n"
+"POT-Creation-Date: 2024-07-16 21:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,26 +24,77 @@ msgstr ""
 msgid "movies"
 msgstr "фильмы"
 
-#: movies/models.py:23
+#: movies/models.py:8
+msgid "added_entry"
+msgstr "запись добавлена"
+
+#: movies/models.py:9
+msgid "updated_entry"
+msgstr "запись обновлена"
+
+#: movies/models.py:24
 msgid "name"
-msgstr "Имя"
+msgstr "имя"
 
-#: movies/models.py:24 movies/models.py:46
+#: movies/models.py:25 movies/models.py:45
 msgid "description"
-msgstr "Описание"
+msgstr "описание"
 
-#: movies/models.py:40
+#: movies/models.py:36
+msgid "movie"
+msgstr "фильм"
+
+#: movies/models.py:37
+msgid "tv_show"
+msgstr "телесериал"
+
+#: movies/models.py:39
 msgid "title"
 msgstr "Название"
 
-#: movies/models.py:47
+#: movies/models.py:40
+msgid "type"
+msgstr "жанр"
+
+#: movies/models.py:46
 msgid "rating"
 msgstr "рейтинг"
 
-#: movies/models.py:49
+#: movies/models.py:48
 msgid "certificate"
 msgstr "сертификат"
 
-#: movies/models.py:50
+#: movies/models.py:49
 msgid "file"
 msgstr "файл"
+
+#: movies/models.py:64
+msgid "full_name"
+msgstr "имя"
+
+#: movies/models.py:87
+msgid "director"
+msgstr "режиссер"
+
+#: movies/models.py:88
+msgid "actor"
+msgstr "актёр"
+
+#: movies/models.py:89
+msgid "producer"
+msgstr "продюсер"
+
+#: movies/models.py:90
+msgid "animator"
+msgstr "аниматор"
+
+#: movies/models.py:91
+msgid "audio_engineer"
+msgstr "аудио инжинер"
+
+#: movies/models.py:95
+msgid "role"
+msgstr "роль"
+
+#~ msgid "published"
+#~ msgstr "премьера"
