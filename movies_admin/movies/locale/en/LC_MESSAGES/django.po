@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-16 21:49+0000\n"
+"POT-Creation-Date: 2024-07-16 22:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,62 +34,106 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-#: movies/models.py:25 movies/models.py:45
+#: movies/models.py:25 movies/models.py:47
 msgid "description"
 msgstr ""
 
-#: movies/models.py:36
+#: movies/models.py:29 movies/models.py:77
+msgid "genre"
+msgstr ""
+
+#: movies/models.py:30
+msgid "genres"
+msgstr ""
+
+#: movies/models.py:38
 msgid "movie"
 msgstr ""
 
-#: movies/models.py:37
+#: movies/models.py:39
 msgid "tv_show"
 msgstr ""
 
-#: movies/models.py:39
+#: movies/models.py:41
 msgid "title"
 msgstr ""
 
-#: movies/models.py:40
+#: movies/models.py:42
 msgid "type"
 msgstr ""
 
-#: movies/models.py:46
+#: movies/models.py:48
 msgid "rating"
 msgstr ""
 
-#: movies/models.py:48
+#: movies/models.py:50
 msgid "certificate"
 msgstr ""
 
-#: movies/models.py:49
+#: movies/models.py:51
 msgid "file"
+msgstr ""
+
+#: movies/models.py:52
+msgid "published"
+msgstr ""
+
+#: movies/models.py:56 movies/models.py:76 movies/models.py:94
+msgid "filmwork"
+msgstr ""
+
+#: movies/models.py:57
+msgid "filmworks"
 msgstr ""
 
 #: movies/models.py:64
 msgid "full_name"
 msgstr ""
 
-#: movies/models.py:87
-msgid "director"
+#: movies/models.py:68 movies/models.py:95
+msgid "person"
+msgstr ""
+
+#: movies/models.py:69
+msgid "persons"
+msgstr ""
+
+#: movies/models.py:82
+msgid "Filmwork genre"
+msgstr ""
+
+#: movies/models.py:83
+msgid "Filmwork genres"
 msgstr ""
 
 #: movies/models.py:88
-msgid "actor"
+msgid "director"
 msgstr ""
 
 #: movies/models.py:89
-msgid "producer"
+msgid "actor"
 msgstr ""
 
 #: movies/models.py:90
-msgid "animator"
+msgid "producer"
 msgstr ""
 
 #: movies/models.py:91
+msgid "animator"
+msgstr ""
+
+#: movies/models.py:92
 msgid "audio_engineer"
 msgstr ""
 
-#: movies/models.py:95
+#: movies/models.py:96
 msgid "role"
+msgstr ""
+
+#: movies/models.py:105
+msgid "Role person in filmwork"
+msgstr ""
+
+#: movies/models.py:106
+msgid "Roles person in filmwork"
 msgstr ""
