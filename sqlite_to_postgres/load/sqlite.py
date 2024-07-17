@@ -4,6 +4,9 @@ from contextlib import contextmanager
 
 @contextmanager
 def conn_context(db_path: str):
+    """
+    Takes sqlite db_path to prepare connection
+    """
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     try:
@@ -13,6 +16,9 @@ def conn_context(db_path: str):
 
 
 def load_from_sqlite(db_path: str, table_name_to_load: str, rows_to_fetch: str):
+    """
+    Takes db_path to load data from provided table_name by chunk size rows_to_fetch
+    """
     with conn_context(db_path) as conn:
         curs = conn.cursor()
         curs.execute(f"SELECT * FROM {table_name_to_load};")

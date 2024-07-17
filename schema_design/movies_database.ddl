@@ -47,7 +47,6 @@ CREATE TABLE IF NOT EXISTS content.genre_film_work (
     created timestamp with time zone
 );
 
-CREATE UNIQUE INDEX CONCURRENTLY IF NOT EXISTS film_work_title_idx ON content.film_work (title);
 CREATE UNIQUE INDEX CONCURRENTLY IF NOT EXISTS genre_name_idx ON content.genre (name);
 
 CREATE INDEX CONCURRENTLY IF NOT EXISTS  film_work_creation_date_idx ON content.film_work(creation_date);

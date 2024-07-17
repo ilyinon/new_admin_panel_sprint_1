@@ -6,13 +6,10 @@ from dataclasses import dataclass, fields, astuple
 
 
 def save_to_postgress(dsn: dict, table_name: str, rows_to_load: list[dataclass]):
+    """
+    Takes prepared rows_to_load and insert it table_name with DSN.
+    """
     with psycopg.connect(**dsn, row_factory=dict_row, cursor_factory=ClientCursor) as conn, conn.cursor() as cursor:
-        # Очищаем таблицу в БД, чтобы загружать данные в пустую таблицу
-        # cursor.execute("""CREATE TABLE IF NOT EXISTS content.temp_table (
-        #                ID uuid PRIMARY KEY,
-        #                full_name TEXT NOT NULL,
-        #                  created timestamp with time zone,
-        #                  updated timestamp with time zone)""")
 
         column_names = [field.name for field in fields(rows_to_load[0])]  # [id, name]
         column_names_str = ','.join(column_names)  # id, name

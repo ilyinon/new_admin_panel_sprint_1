@@ -9,7 +9,6 @@ class TimeStampedMixin(models.Model):
     modified = models.DateTimeField(_('updated_entry'), auto_now=True)
 
     class Meta:
-        # Этот параметр указывает Django, что этот класс не является представлением таблицы
         abstract = True
 
 
@@ -86,11 +85,9 @@ class GenreFilmwork(UUIDMixin):
 class PersonFilmwork(UUIDMixin):
 
     class RoleType(models.TextChoices):
-        DIRECTOR = "DIRECTOR", (_('director'))
-        ACTOR = "ACTOR", (_('actor'))
-        PRODUCER = "PRODUCER", (_('producer'))
-        ANIMATOR = "ANIMATOR", (_('animator'))
-        AUDIO_ENGINEER = "AUDIO_ENGINEER", (_('audio_engineer'))
+        DIRECTOR = "direcotr", (_('director'))
+        ACTOR = "actor", (_('actor'))
+        PRODUCER = "writer", (_('writer'))
 
     film_work = models.ForeignKey('Filmwork', on_delete=models.CASCADE, verbose_name=(_('filmwork')))
     person = models.ForeignKey('Person', on_delete=models.CASCADE, verbose_name=(_('person')))
