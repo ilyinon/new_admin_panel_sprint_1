@@ -24,7 +24,7 @@ class User:
     id: UUID
     full_name: str
     created: datetime.datetime
-    updated: datetime.datetime
+    modified: datetime.datetime
 
 
 loaded_data = []
@@ -32,9 +32,10 @@ loaded_data = []
 
 def upload_data_from_sqlite_to_pgsql(dbname: str):
     for el in load_from_sqlite(DB_PATH, 'person', SQLITE_NUMBER_OF_ROWS_TO_FETCH):
-        to_append = User(UUID(el['id']), el['full_name'], el['created_at'], 'NOW()')
-    loaded_data.append(to_append)
-    save_to_postgress(dsn, loaded_data)
+        if dbname == 'person':
+            to_append = User(UUID(el['id']), el['full_name'], el['created_at'], 'NOW()')
+        loaded_data.append(to_append)
+    save_to_postgress(dsn, dbname, loaded_data)
 
 
 if __name__ == '__main__':
