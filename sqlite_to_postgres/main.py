@@ -21,27 +21,34 @@ dsn = {
 }
 
 
+def map_sqlite_to_pgsql(table_name: str, el: dict):
+    """
+    Takes table_name to get colums format, el to get data from sqlite
+    and converts table from sqlite schema to pgsql schema.
+    """
+    if table_name == 'person':
+        return User(UUID(el['id']), el['full_name'], el['created_at'], 'NOW()')
+    elif table_name == 'genre':
+        return Genre(UUID(el['id']), el['name'], el['description'], el['created_at'], 'NOW()')
+    elif table_name == 'film_work':
+        return FilmWork(UUID(el['id']), el['title'], el['description'], el['creation_date'], '',
+                        el['file_path'], el['rating'], el['type'], el['created_at'], el['updated_at'])
+    elif table_name == 'genre_film_work':
+        return GenreFilmWork(UUID(el['id']), UUID(el['film_work_id']), UUID(el['genre_id']), el['created_at'])
+    elif table_name == 'person_film_work':
+        return PersonFilmWork(UUID(el['id']), UUID(el['film_work_id']), UUID(el['person_id']), el['role'], el['created_at'])
+
+
 def upload_data_from_sqlite_to_pgsql(table_name: str):
     """
-    Takes table_name and calls load_from_sqlite() function which fetch all data from sqlite.
+    Takes table_name and calls load_from_sqlite() function to fetch_all data from sqlite.
     Each entry is formated to one of dataclasses to have a proper format.
     After it uploads data to postgres by using save_to_postgress()
     """
 
     loaded_data = []
     for el in load_from_sqlite(DB_PATH, table_name, SQLITE_NUMBER_OF_ROWS_TO_FETCH):
-        if table_name == 'person':
-            to_append = User(UUID(el['id']), el['full_name'], el['created_at'], 'NOW()')
-        elif table_name == 'genre':
-            to_append = Genre(UUID(el['id']), el['name'], el['description'], el['created_at'], 'NOW()')
-        elif table_name == 'film_work':
-            to_append = FilmWork(UUID(el['id']), el['title'], el['description'], el['creation_date'], '', el['file_path'],
-                                 el['rating'], el['type'], el['created_at'], el['updated_at'])
-        elif table_name == 'genre_film_work':
-            to_append = GenreFilmWork(UUID(el['id']), UUID(el['film_work_id']), UUID(el['genre_id']), el['created_at'])
-        elif table_name == 'person_film_work':
-            to_append = PersonFilmWork(UUID(el['id']), UUID(el['film_work_id']), UUID(el['person_id']), el['role'], el['created_at'])
-        loaded_data.append(to_append)
+        loaded_data.append(map_sqlite_to_pgsql(table_name, el))
     save_to_postgress(dsn, table_name, loaded_data, PGSQL_ITER_SIZE)
 
 
