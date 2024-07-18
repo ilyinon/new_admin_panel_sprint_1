@@ -12,10 +12,11 @@
 Успехов!
 
 -------
-Выполнение задания
+# Выполнение задания
 -------
-
+## 0. Подгтотовительный этап
 Для начала необходимо иметь PostgreSQL на хосте. Его можно установить в докер следующей командой:
+
 `
 docker run -d \
   --name postgres \
@@ -26,31 +27,55 @@ docker run -d \
   -e POSTGRES_DB=movies_database  \
   postgres:16
   `
+
 Также установить зависимости из requirements.txt
+
 `
 pip install -r requirements.txt
 `
 
-1. Проектное задание: SQL
+## 1. Проектное задание: SQL
+
 Создать в только созданной базе данный постгрес или обновить текущий, нужно следующей командой
+
 `
 psql -h 127.0.0.1 -U app -d movies_database -f schema_design/movies_database.ddl
 `
 
-2. Проектное задаине: панель администратора
+## 2. Проектное задаине: панель администратора
+
 Необходимо заполнить файл movies_admin/config/.env
 Запустить django можно следующим способом
+
 `
 cd movies_admin/ && python manage.py migrate &&  python3 manage.py runserver
 `
+
 После этого django будет доступен на адресе localhost:8000
 
-3. Для загрузки данных из sqlite в postgresql нужно выполнить команду
+Не забываем добавить superuse
+
 `
-cd sqlite_to_postgres/ && python main.py
+python manage.py createsuperuser
+`
+
+## 3. Для загрузки данных из sqlite в postgresql нужно выполнить команду
+
+`
+python sqlite_to_postgres/main.py
 `
 
 Для проверки корреткности загрузки нужно запустить файл с тестами, например
+
 `
 python -m unittest sqlite_to_postgres/tests/check_consistency.py
 `
+
+результатом запуска должен быть вывод 
+
+`
+Ran 3 tests in 0.256s
+
+OK
+` 
+с кодом ноль, что говорит о корректности загрузки данных.
