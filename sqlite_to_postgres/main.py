@@ -4,10 +4,12 @@ from load.sqlite import load_from_sqlite
 from load.pgsql import save_to_postgress
 from load.dataclasses import User, Genre, FilmWork, GenreFilmWork, PersonFilmWork
 
+TABLES_TO_LOAD = ['person', 'genre', 'film_work', 'genre_film_work', 'person_film_work']
+
 
 SQLITE_NUMBER_OF_ROWS_TO_FETCH = 100
+PGSQL_ITER_SIZE = 100
 DB_PATH = '/Users/oilyin/yandex/new_admin_panel_sprint_1/sqlite_to_postgres/db.sqlite'
-TABLES_TO_LOAD = ['person', 'genre', 'film_work', 'genre_film_work', 'person_film_work']
 
 dsn = {
     'dbname': 'mdb',
@@ -40,7 +42,7 @@ def upload_data_from_sqlite_to_pgsql(table_name: str):
         elif table_name == 'person_film_work':
             to_append = PersonFilmWork(UUID(el['id']), UUID(el['film_work_id']), UUID(el['person_id']), el['role'], el['created_at'])
         loaded_data.append(to_append)
-    save_to_postgress(dsn, table_name, loaded_data)
+    save_to_postgress(dsn, table_name, loaded_data, PGSQL_ITER_SIZE)
 
 
 if __name__ == '__main__':

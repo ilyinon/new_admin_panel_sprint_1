@@ -49,3 +49,7 @@ class PersonFilmWork:
     person_id: UUID
     role: str
     created: datetime.datetime
+
+
+if __name__ == '__main__':
+    print("Please run main.py to start data processing")
