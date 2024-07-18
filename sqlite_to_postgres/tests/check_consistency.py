@@ -13,28 +13,28 @@ DB_PATH = '/Users/oilyin/yandex/new_admin_panel_sprint_1/sqlite_to_postgres/db.s
 PG_SCHEMA_NAME = 'content'
 TABLES_TO_CHECK = [
     {'table_name': 'person',
-        'psql_query': 'SELECT id::text, full_name FROM content.person;',
-        'sqlite_query': 'SELECT id, full_name FROM person;'
+        'psql_query': 'SELECT id::text, full_name FROM content.person ORDER BY id;',
+        'sqlite_query': 'SELECT id, full_name FROM person ORDER BY id;'
      },
     {'table_name': 'genre',
-        'psql_query': 'SELECT id::text, name, description FROM content.genre;',
-        'sqlite_query': 'SELECT id, name, description FROM genre;'
+        'psql_query': 'SELECT id::text, name, description FROM content.genre ORDER BY id;',
+        'sqlite_query': 'SELECT id, name, description FROM genre ORDER BY id;'
      },
     {'table_name': 'film_work',
-        'psql_query': 'SELECT id::text, title, description, file_path, rating, type, creation_date FROM content.film_work;',
-        'sqlite_query': 'SELECT id, title, description, file_path, rating, type, creation_date FROM film_work;'
+        'psql_query': 'SELECT id::text, title, description, file_path, rating, type, creation_date FROM content.film_work ORDER BY id;',
+        'sqlite_query': 'SELECT id, title, description, file_path, rating, type, creation_date FROM film_work ORDER BY id;'
      },
     {'table_name': 'genre_film_work',
-        'psql_query': 'SELECT id::text, film_work_id::text, genre_id::text FROM content.genre_film_work;',
-        'sqlite_query': 'SELECT id, film_work_id, genre_id FROM genre_film_work;'
+        'psql_query': 'SELECT id::text, film_work_id::text, genre_id::text FROM content.genre_film_work ORDER BY id;',
+        'sqlite_query': 'SELECT id, film_work_id, genre_id FROM genre_film_work ORDER BY id;'
      },
     {'table_name': 'person_film_work',
-        'psql_query': 'SELECT id::text, film_work_id::text, person_id::text, role FROM content.person_film_work;',
-        'sqlite_query': 'SELECT id, film_work_id, person_id, role FROM person_film_work;'
+        'psql_query': 'SELECT id::text, film_work_id::text, person_id::text, role FROM content.person_film_work ORDER BY id;',
+        'sqlite_query': 'SELECT id, film_work_id, person_id, role FROM person_film_work ORDER BY id;'
      },
 ]
 dsn = {
-    'dbname': 'mdb',
+    'dbname': 'movies_database',
     'user': 'app',
     'password': '123qwe',
     'host': 'localhost',
@@ -113,7 +113,7 @@ class TestDatabaseConsistency(unittest.TestCase):
                 curs.execute(table['sqlite_query'])
                 # curs.execute(f"SELECT id, full_name FROM {table};")
                 sqlite_all = curs.fetchall()
-            self.assertEqual(pg_all, sqlite_all, "Entries are not equal in {table[table_name]}")
+            self.assertEqual(pg_all, sqlite_all, f"Entries are not equal in {table}")
 
 
 if __name__ == '__main__':

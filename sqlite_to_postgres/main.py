@@ -12,7 +12,7 @@ PGSQL_ITER_SIZE = 100
 DB_PATH = '/Users/oilyin/yandex/new_admin_panel_sprint_1/sqlite_to_postgres/db.sqlite'
 
 dsn = {
-    'dbname': 'mdb',
+    'dbname': 'movies_database',
     'user': 'app',
     'password': '123qwe',
     'host': 'localhost',
