@@ -47,7 +47,7 @@ psql -h 127.0.0.1 -U app -d movies_database -f schema_design/movies_database.ddl
 Необходимо заполнить файл 
 
 `
-movies_admin/config/.env
+.env
 `
 
 Запустить django можно следующим способом
