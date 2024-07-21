@@ -1,8 +1,11 @@
 import psycopg
+import logging
 
 from psycopg import ClientCursor
 from psycopg.rows import dict_row
 from dataclasses import dataclass, fields, astuple
+
+logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
 
 def save_to_postgress(dsn: dict, table_name: str, rows_to_load: list[dataclass], iter_size: str):
@@ -21,8 +24,9 @@ def save_to_postgress(dsn: dict, table_name: str, rows_to_load: list[dataclass],
                      f'ON CONFLICT (id) DO NOTHING')
             cursor.execute(query)
     except psycopg.Error as ex:
-        print(f"PGSL: Error during loading data to {table_name}", ex)
+        logging.error('PGSL: Error during loading data to {table_name}', ex)
+
 
 
 if __name__ == '__main__':
-    print("Please run main.py to start data processing")
+    logging.error("Please run main.py to start data processing")

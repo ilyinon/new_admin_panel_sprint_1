@@ -1,6 +1,9 @@
 from dataclasses import dataclass
 from uuid import UUID
 import datetime
+import logging
+
+logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
 
 @dataclass
@@ -52,4 +55,4 @@ class PersonFilmWork:
 
 
 if __name__ == '__main__':
-    print("Please run main.py to start data processing")
+    logging.error("Please run main.py to start data processing")

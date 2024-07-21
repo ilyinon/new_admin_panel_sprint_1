@@ -1,26 +1,10 @@
-import uuid
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
-
-
-class TimeStampedMixin(models.Model):
-    created = models.DateTimeField(_('added_entry'), auto_now_add=True)
-    modified = models.DateTimeField(_('updated_entry'), auto_now=True)
-
-    class Meta:
-        abstract = True
-
-
-class UUIDMixin(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
-    class Meta:
-        abstract = True
-
+from .mixins import TimeStampedMixin, UUIDMixin
 
 class Genre(UUIDMixin, TimeStampedMixin):
-    name = models.CharField(_('name'), max_length=255)
+    name = models.CharField(_('name'), max_length=255, unique=True)
     description = models.TextField(_('description'), blank=True)
 
     class Meta:
@@ -28,6 +12,9 @@ class Genre(UUIDMixin, TimeStampedMixin):
         db_table = "content\".\"genre"
         verbose_name = (_('genre'))
         verbose_name_plural = (_('genres'))
+        indexes = [
+            models.Index(fields=['name'], name='genre_name_idx'),
+        ]
 
     def __str__(self):
         return self.name
@@ -56,6 +43,9 @@ class Filmwork(UUIDMixin, TimeStampedMixin):
         db_table = "content\".\"film_work"
         verbose_name = (_('filmwork'))
         verbose_name_plural = (_('filmworks'))
+        indexes = [
+            models.Index(fields=['creation_date'], name='film_work_creation_date_idx'),
+        ]
 
     def __str__(self):
         return self.title
@@ -84,7 +74,11 @@ class GenreFilmwork(UUIDMixin):
         db_table = "content\".\"genre_film_work"
         verbose_name = (_('Filmwork genre'))
         verbose_name_plural = (_('Filmwork genres'))
-
+        unique_together = ['film_work_id', 'genre_id']
+        indexes = [
+            models.Index(fields=['film_work_id', 'genre_id' ], name='film_work_genre_idx'),
+            models.Index(fields=['film_work_id'], name='genre_film_work_film_work_idx')
+        ]
 
 class PersonFilmwork(UUIDMixin):
 
@@ -107,3 +101,7 @@ class PersonFilmwork(UUIDMixin):
         db_table = "content\".\"person_film_work"
         verbose_name = (_('Role person in filmwork'))
         verbose_name_plural = (_('Roles person in filmwork'))
+        unique_together = ['film_work_id', 'person_id', 'role']
+        indexes = [
+            models.Index(fields=['film_work_id', 'person_id', 'role' ], name='film_work_person_idx'),
+        ]
