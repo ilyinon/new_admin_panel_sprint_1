@@ -1,12 +1,15 @@
+import os
 import psycopg
+import sqlite3
 import unittest
+
+from contextlib import contextmanager
+from dotenv import load_dotenv
 from psycopg import ClientCursor
 from psycopg.rows import dict_row
-from dataclasses import dataclass, fields, astuple
-import sqlite3
-from contextlib import contextmanager
-from collections import defaultdict
 
+
+load_dotenv('/Users/oilyin/yandex/new_admin_panel_sprint_1/.env')
 
 TABLES_TO_LOAD = ['person', 'genre', 'film_work', 'genre_film_work', 'person_film_work']
 DB_PATH = '/Users/oilyin/yandex/new_admin_panel_sprint_1/sqlite_to_postgres/db.sqlite'
@@ -33,12 +36,13 @@ TABLES_TO_CHECK = [
         'sqlite_query': 'SELECT id, film_work_id, person_id, role FROM person_film_work ORDER BY id;'
      },
 ]
+
 dsn = {
-    'dbname': 'movies_database',
-    'user': 'app',
-    'password': '123qwe',
-    'host': 'localhost',
-    'port': 5432,
+    'dbname': os.environ.get('DB_NAME', 'movies_database'),
+    'user': os.environ.get('DB_USER', 'app'),
+    'password': os.environ.get('DB_PASSWORD',),
+    'host': os.environ.get('DB_HOST', 'localhost'),
+    'port': os.environ.get('DB_PORT', 5432),
     'options': '-c search_path=content',
 }
 

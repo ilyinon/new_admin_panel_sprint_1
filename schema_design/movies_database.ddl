@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS content.film_work (
     creation_date timestamp with time zone,
     certificate TEXT,
     file_path TEXT,
-    rating FLOAT,
+    rating FLOAT CHECK ( rating >= 0 AND rating <= 100),
     type TEXT NOT NULL,
     created timestamp with time zone,
     modified timestamp with time zone
