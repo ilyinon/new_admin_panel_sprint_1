@@ -38,7 +38,7 @@ TABLES_TO_CHECK = [
 ]
 
 dsn = {
-    'dbname':os.environ.get('DB_NAME', 'movies_database'),
+    'dbname': os.environ.get('DB_NAME', 'movies_database'),
     'user': os.environ.get('DB_USER', 'app'),
     'password': os.environ.get('DB_PASSWORD',),
     'host': os.environ.get('DB_HOST', 'localhost'),

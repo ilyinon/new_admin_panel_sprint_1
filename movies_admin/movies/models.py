@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
 from .mixins import TimeStampedMixin, UUIDMixin
 
+
 class Genre(UUIDMixin, TimeStampedMixin):
     name = models.CharField(_('name'), max_length=255, unique=True)
     description = models.TextField(_('description'), blank=True)
@@ -76,13 +77,15 @@ class GenreFilmwork(UUIDMixin):
         verbose_name_plural = (_('Filmwork genres'))
         unique_together = ['film_work_id', 'genre_id']
         indexes = [
-            models.Index(fields=['film_work_id', 'genre_id' ], name='film_work_genre_idx'),
+            models.Index(fields=['film_work_id', 'genre_id'], name='film_work_genre_idx'),
             models.Index(fields=['film_work_id'], name='genre_film_work_film_work_idx')
         ]
+
 
 class PersonFilmwork(UUIDMixin):
 
     class RoleType(models.TextChoices):
+
         DIRECTOR = "direcotr", (_('director'))
         ACTOR = "actor", (_('actor'))
         PRODUCER = "writer", (_('writer'))
@@ -103,5 +106,5 @@ class PersonFilmwork(UUIDMixin):
         verbose_name_plural = (_('Roles person in filmwork'))
         unique_together = ['film_work_id', 'person_id', 'role']
         indexes = [
-            models.Index(fields=['film_work_id', 'person_id', 'role' ], name='film_work_person_idx'),
+            models.Index(fields=['film_work_id', 'person_id', 'role'], name='film_work_person_idx'),
         ]

@@ -17,7 +17,7 @@ DB_PATH = '/Users/oilyin/yandex/new_admin_panel_sprint_1/sqlite_to_postgres/db.s
 
 
 dsn = {
-    'dbname':os.environ.get('DB_NAME', 'movies_database'),
+    'dbname': os.environ.get('DB_NAME', 'movies_database'),
     'user': os.environ.get('DB_USER', 'app'),
     'password': os.environ.get('DB_PASSWORD',),
     'host': os.environ.get('DB_HOST', 'localhost'),

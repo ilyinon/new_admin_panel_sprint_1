@@ -27,6 +27,5 @@ def save_to_postgress(dsn: dict, table_name: str, rows_to_load: list[dataclass],
         logging.error('PGSL: Error during loading data to {table_name}', ex)
 
 
-
 if __name__ == '__main__':
     logging.error("Please run main.py to start data processing")

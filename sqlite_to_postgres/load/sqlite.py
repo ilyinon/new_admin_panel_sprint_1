@@ -4,6 +4,7 @@ from contextlib import contextmanager
 
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 
+
 @contextmanager
 def conn_context(db_path: str):
     """
@@ -34,6 +35,7 @@ def load_from_sqlite(db_path: str, table_name_to_load: str, rows_to_fetch: str):
                     results.append(dict(item))
     except sqlite3.Error as ex:
         logging.error('SQLITE: Error during reading from {table_name_to_load}', ex)
+
 
 if __name__ == '__main__':
     logging.info('Please run main.py to start data processing')
