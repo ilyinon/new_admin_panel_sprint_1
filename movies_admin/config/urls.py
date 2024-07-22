@@ -24,7 +24,7 @@ DEBUG = os.environ.get('DEBUG', False) == 'True'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-] + debug_toolbar_urls()
+]
 
 if DEBUG:
-    urlpatterns + debug_toolbar_urls()
+    urlpatterns += debug_toolbar_urls()
